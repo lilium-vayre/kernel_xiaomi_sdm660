@@ -15,6 +15,19 @@
 #include "sdm660-synaptics-tcm-i2c_f7a.dtsi"
 
 /* msm-pm660.dtsi lavender specific diff */
+/ {
+	firmware {
+		android {
+			compatible = "android,firmware";
+
+			vbmeta {
+				compatible = "android,vbmeta";
+				parts = "vbmeta,boot,system,vendor,dtbo,recovery";
+			};
+		};
+	};
+};
+
 &spmi_bus {
 	qcom,pm660@0 {
 		qcom,power-on@800 {
@@ -78,21 +91,6 @@
 };
 
 /* sdm660.dtsi lavender specific diff */
-&firmware {
-	android {
-		vbmeta {
-			compatible = "android,vbmeta";
-			parts = "vbmeta,boot,system,vendor,dtbo,recovery";
-		};
-
-		fstab {
-			vendor {
-				fsmgr_flags = "wait,avb";
-			};
-		};
-	};
-};
-
 &soc {
 	qcom,bcl {
 		qcom,bcl-soc-hotplug-list = <&CPU5 &CPU7>;
