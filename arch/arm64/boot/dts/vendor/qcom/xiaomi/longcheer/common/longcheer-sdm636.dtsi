@@ -17,6 +17,12 @@
 
 
 /* sdm660-common.dtsi tulip/whyred specific diff */
+&firmware {
+	android {
+		/delete-node/ vbmeta;
+	};
+};
+
 &usb3 {
 	extcon = <&pm660_charger>;
 	vbus_dwc3-supply = <&smb2_vbus>;
