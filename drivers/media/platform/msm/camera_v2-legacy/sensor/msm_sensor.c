@@ -437,7 +437,7 @@ int msm_sensor_match_vendor_id(struct msm_sensor_ctrl_t *s_ctrl)
 		have_vcmid = 1;
 	}
 #endif
-#endif
+
 
 	sensor_i2c_client->cci_client->sid = temp_sid;
 	sensor_i2c_client->cci_client->cci_i2c_master = temp_master;
@@ -471,6 +471,7 @@ int msm_sensor_match_vendor_id(struct msm_sensor_ctrl_t *s_ctrl)
 
 	return rc;
 }
+#endif
 #endif
 
 static uint16_t msm_sensor_id_by_mask(struct msm_sensor_ctrl_t *s_ctrl,
