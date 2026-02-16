@@ -32,11 +32,8 @@
 #define VSYNC_DELAY msecs_to_jiffies(17)
 
 #ifdef CONFIG_MACH_LONGCHEER
-bool tianma_jdi_flag=0;
-char g_lcd_id[128];
-struct mdss_dsi_ctrl_pdata *ctrl_pdata_whitepoint;
-EXPORT_SYMBOL(g_lcd_id);
 extern bool enable_gesture_mode;
+
 
 #ifdef CONFIG_MACH_XIAOMI_LAVENDER
 #define TP_RESET_GPIO 66
@@ -46,9 +43,14 @@ extern bool synaptics_gesture_enable_flag;
 #elif defined CONFIG_MACH_XIAOMI_WHYRED
 extern bool synaptics_gesture_func_on;
 #endif
-
-bool ESD_TE_status = false;
 #endif
+
+bool tianma_jdi_flag=0;
+char g_lcd_id[128];
+struct mdss_dsi_ctrl_pdata *ctrl_pdata_whitepoint;
+EXPORT_SYMBOL(g_lcd_id);
+bool ESD_TE_status = false;
+EXPORT_SYMBOL(ESD_TE_status);
 #ifdef CONFIG_MACH_XIAOMI_CLOVER
 struct mdss_dsi_ctrl_pdata *change_par_ctrl ;
 int change_par_buf;
