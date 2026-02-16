@@ -553,7 +553,8 @@ static void __init mm_init(void)
 }
 
 #if defined(CONFIG_MACH_LONGCHEER) || defined(CONFIG_MACH_XIAOMI_CLOVER) || defined(CONFIG_MACH_XIAOMI_PLATINA)
-int fpsensor = 1;
+// int fpsensor = 1;
+extern int fpsensor;
 bool is_poweroff_charge = false;
 #endif
 asmlinkage __visible void __init start_kernel(void)
