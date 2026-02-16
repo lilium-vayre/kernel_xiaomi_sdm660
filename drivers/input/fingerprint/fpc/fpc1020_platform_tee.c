@@ -111,9 +111,7 @@ struct fpc1020_data {
 	bool compatible_enabled;
 #endif
 	atomic_t wakeup_enabled; /* Used both in ISR and non-ISR */
-#ifdef CONFIG_MACH_XIAOMI_SDM660
 	int irqf;
-#endif
 	struct notifier_block fb_notifier;
 	bool fb_black;
 	bool wait_finger_down;
@@ -443,6 +441,7 @@ static inline int device_prepare(struct fpc1020_data *fpc1020, bool enable)
 #endif
 		select_pin_ctl(fpc1020, "fpc1020_reset_reset");
 
+#if defined(CONFIG_MACH_XIAOMI_SDM660) || defined(CONFIG_MACH_XIAOMI_CLOVER)
 #ifndef CONFIG_MACH_MI
 		rc = vreg_setup(fpc1020, "vcc_spi", true);
 		if (rc)
@@ -455,6 +454,7 @@ static inline int device_prepare(struct fpc1020_data *fpc1020, bool enable)
 		rc = vreg_setup(fpc1020, "vdd_io", true);
 		if (rc)
 			goto exit_1;
+#endif
 #endif
 
 		rc = vreg_setup(fpc1020, "vdd_ana", true);
@@ -486,7 +486,7 @@ exit_2:
 exit_1:
 		(void)vreg_setup(fpc1020, "vcc_spi", false);
 exit:
-#elif CONFIG_MACH_XIAOMI_SDM660
+#elif defined(CONFIG_MACH_XIAOMI_SDM660)
 #ifndef CONFIG_MACH_MI
 		(void)vreg_setup(fpc1020, "vdd_io", false);
 exit_1:
@@ -967,9 +967,7 @@ static inline int fpc1020_probe(struct platform_device *pdev)
 {
 	struct device *dev = &pdev->dev;
 	int rc = 0;
-#ifdef CONFIG_MACH_XIAOMI_SDM660
 	size_t i;
-#endif
 #ifdef CONFIG_MACH_XIAOMI_CLOVER
 	int irqf = 0;
 #endif
