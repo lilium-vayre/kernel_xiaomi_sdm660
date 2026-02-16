@@ -76,7 +76,8 @@ static LIST_HEAD(device_list);
 static DEFINE_MUTEX(device_list_lock);
 static struct gf_dev gf;
 
-extern int fpsensor;
+int fpsensor = 0;
+EXPORT_SYMBOL(fpsensor);
 
 static struct gf_key_map maps[] = {
 	{ EV_KEY, GF_KEY_INPUT_HOME },
